@@ -64,6 +64,16 @@ SinkWidget::SinkWidget(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>
     encodings[i].widget->signal_toggled().connect(sigc::mem_fun(*this, &SinkWidget::onEncodingsChange));
 
     ++i;
+    encodings[i].encoding = PA_ENCODING_TRUEHD_IEC61937;
+    x->get_widget("encodingFormatTrueHD", encodings[i].widget);
+    encodings[i].widget->signal_toggled().connect(sigc::mem_fun(*this, &SinkWidget::onEncodingsChange));
+
+    ++i;
+    encodings[i].encoding = PA_ENCODING_DTSHD_IEC61937;
+    x->get_widget("encodingFormatDTSHD", encodings[i].widget);
+    encodings[i].widget->signal_toggled().connect(sigc::mem_fun(*this, &SinkWidget::onEncodingsChange));
+
+    ++i;
     encodings[i].encoding = PA_ENCODING_INVALID;
     x->get_widget("encodingFormatAAC", encodings[i].widget);
     encodings[i].widget->set_sensitive(false);
